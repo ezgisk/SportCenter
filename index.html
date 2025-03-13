@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Powerfull Gym</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            font-weight: bolder;
+        }
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+        .hero-section {
+            background: url('/img/hero-man.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: left;
+            padding: 100px 20px;
+            position: relative;
+        }
+        .hero-section::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            justify-content:left;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            text-align: center;
+            padding: 50px 330px;
+            background: #f5f9ff;
+            flex-wrap: nowrap; 
+            
+        }
+        .stat-item {
+
+            background: #fdfeff;
+            font-weight:bolder;       
+            font-size: 1rem;
+            justify-content: space-between;  /* Öğeler arasında eşit boşluk bırakır */
+            align-items: center;             /* Dikeyde ortalar */
+            padding: 10px 20px;                 /* Sol ve sağdan biraz boşluk bırakır */
+            margin: 15px 15px;  
+            width: 20%;  
+        }
+        .stat-item h3 {
+            font-size: 1.4rem;
+            color: #113e6e;
+            font-weight:bolder;        
+        }
+        
+        .navbar {
+            background: rgba(0, 0, 0, 0) !important;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar-nav .nav-link {
+            font-weight: bold;
+            color: white !important;
+        }
+        .navbar-nav .btn {
+            font-weight: bold;
+        }
+        .custom-btn {
+            background-color: #113e6e;  /* Mavi arka plan */
+            border-radius: 3px;         /* Yuvarlatılmış köşeler */
+            padding: 2px 15px;          /* İçerik boşluğu */
+            text-decoration: none;       /* Link altını kaldırma */
+            display: inline-block;       /* Satır içi blok davranışı */
+            font-size: 14px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
+        }
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5);  /* Yarı saydam siyah arka plan */
+            padding: 20px;                         /* İçerik boşluğu */
+            border-radius: 10px;                   /* Yuvarlatılmış köşeler */
+            display: inline-block;                 /* Satır içi blok davranışı */
+        }
+
+        .lead {
+            color: white;                          /* Beyaz metin rengi */
+            font-size: 1.15rem;                    /* Metin boyutu */
+        }
+        .btn-primary{
+            background-color: #113e6e;
+            border-radius: 3px;         /* Yuvarlatılmış köşeler */
+            padding: 2px 15px;          /* İçerik boşluğu */
+            text-decoration: none;       /* Link altını kaldırma */
+            display: inline-block;       /* Satır içi blok davranışı */
+            font-size: 14px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
+        }
+        .btn-outline-light{
+            border-radius: 3px;         /* Yuvarlatılmış köşeler */
+            padding: 2px 15px;          /* İçerik boşluğu */
+            text-decoration: none;       /* Link altını kaldırma */
+            display: inline-block;       /* Satır içi blok davranışı */
+            font-size: 14px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
+            margin-left: 15px;
+        }
+        .button-div{
+            margin-top: 15px;
+            margin-left: 15px;
+        }
+        .stats .stat-item {
+            margin-right: 5px; /* Sağ tarafa 5px boşluk */
+        }
+
+        .stats .stat-item:last-child {
+            margin-right: 0; /* Son öğenin sağ tarafına boşluk vermemek için */
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #1d3b80;
+        }
+        .h3{
+            font-weight: bolder;
+        }
+        .section {
+            padding-top: 40px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+        
+        }
+        
+        .yoga-btn {
+            background-color: orange;
+            color: white;
+        }
+        .group-btn, .solo-btn, .stretching-btn {
+            background-color: #1d3b80;
+            color: white;
+        }
+        .yoga-info {
+            text-align: left;
+            max-width: 600px;
+            margin: auto;
+            font-weight: bolder;
+        }
+        .bmi-calculator input {
+            padding: 5px;
+            margin: 5px;
+            width: 100px;
+        }
+        .bmi-calculator input {
+            padding: 5px;
+            margin: 5px;
+            width: 100px;
+        }
+        .bmi-index img {
+            max-width: 100%;
+        }
+        .img-container img {
+            max-width: 400px;
+            height: auto;
+            margin-left: 20px;
+            justify-content: center;
+        }
+        .content-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #grad {
+            background-image: linear-gradient(to right,white,grey)
+        }
+        .section-trainers{
+            background: #f5f9ff;
+            margin-top: 40px;
+
+        }
+        .footer {
+            background-color: #1d3b80;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            font-size: 12px; 
+            text-align: left;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            gap: 100px;
+            margin-top: 20px;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+            margin-right: 200px;
+        }
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
+            </a>            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainers">Trainers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#review">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="btn btn-warning text-white" href="#join">JOIN US</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <div class="hero-section">
+        <div class="container hero-content">
+            <a class="text-white fw-bold custom-btn" href="#">
+                POWERFULL
+            </a>            
+            <h1 class="display-4 fw-bold ">Group</h1>
+            <h1 class="display-4 fw-bold">Practice</h1>
+            <h1 class="display-4 fw-bold">With Trainer</h1>
+            <div class="overlay">
+                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit<br>
+                aut iste. Velit porro rerum, unde modi ipsam exercitationem laudantium<br>
+                illum. Id, laborum? Totam, dicta nisi. Voluptates, vero id. Perferendis.</p>
+            </div>
+            <div class="button-div">           
+            <button class="btn btn-primary">Sign Up</button>
+            <button class="btn btn-outline-light">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid text-center">
+        <div class="row stats">
+            <div class="col-md-3 stat-item">
+                <h3>325</h3>
+                <p>Course</p>
+            </div>
+            <div class="col-md-3 stat-item">
+                <h3>405</h3>
+                <p>Work Out</p>
+            </div>
+            <div class="col-md-3 stat-item">
+                <h3>305</h3>
+                <p>Working Hour</p>
+            </div>
+            <div class="col-md-3 stat-item">
+                <h3>705</h3>
+                <p>Happy Client</p>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="grad">
+            <div>
+                <h2 style="font-weight: bolder;">OUR CLASSES</h2>
+                <p style="font-weight: bolder;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at <br> Hampden-Sydney College.</p>
+                <div class="buttons">
+                    <button class="yoga-btn">Yoga</button>
+                    <button class="group-btn">Group</button>
+                    <button class="solo-btn">Solo</button>
+                    <button class="stretching-btn">Stretching</button>
+                </div>
+            </div>
+            <div class="row" style="margin: 45px;">
+                <div class="col-md-6 yoga-info">
+                    <h3 style="font-weight: bolder;">Why are your Yoga?</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit...
+                    </p>
+                    <h4 style="font-weight: bolder;">When comes Yoga Your Time.</h4>
+                    <p>Saturday-Sunday: 8:00am - 10:00am</p>
+                    <p>Monday-Tuesday: 10:00am - 12:00pm</p>
+                    <p>Wednesday-Friday: 3:00pm - 6:00pm</p>
+                </div>
+                <div class="col-md-6 img-container">
+                    <img src="/img/yoga.jpg" alt="Yoga Class" width="650" height="6500">
+                </div>
+            </div>
+        </div> 
+        <div class="section">
+            <div class="row">
+                <div class="col-md-6">
+                <h2 style="font-weight: bolder;">BMI Calculator</h2>
+                <p style="margin: 20px;">Contrary to popular belief, Lorem Ipsum is not simply random text...
+                    <br>Contrary to popular belief, Lorem Ipsum is not simply random text...
+                    <br>Contrary to popular belief, Lorem Ipsum is not simply random text...
+                    <br>Contrary to popular belief, Lorem Ipsum is not simply random text...
+                    <br>Contrary to popular belief, Lorem Ipsum is not simply random text...
+                    <br>Contrary to popular belief, Lorem Ipsum is not simply random text...</p>
+                    <div class="bmi-calculator">
+                        <input type="text" style="height: 25px; width: 120px;" placeholder="Your Height"> cm
+                        <input type="text" style="height: 25px; width: 120px;" placeholder="Your Weight"> kg
+                    </div>
+                </div>
+            <div class=" col-md-6 bmi-index">
+                <img src="/img/bmi-index.jpg" alt="Body Mass Index Chart" width="400" height="250">
+            </div>
+        </div>
+        <div class="section-trainers">
+            <h2 style="font-weight: bolder;">OUR BEST TRAINERS</h2>
+            <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at <br> Hampden-Sydney College.</p>
+                <div class="row">
+                    <div class="col-md-4"><img src="/img/trainer1.jpg" alt="Trainer 1"></div>
+                    <div class="col-md-4"><img src="/img/trainer2.jpg" alt="Trainer 2"></div>
+                    <div class="col-md-4"><img src="/img/trainer3.jpg" alt="Trainer 3"></div>
+                </div>
+            </div>
+    
+            <div class="section">
+                <h2 style="font-weight: bolder;">PURCHASE FROM US</h2>
+                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at <br> Hampden-Sydney College.</p>
+                <div class="row">
+                    <div class="col-md-3"><img src="/img/purchase1.jpg" alt="Kettlebell 5kg"><p>Kettlebell / 5kg</p></div>
+                    <div class="col-md-3"><img src="/img/purchase2.jpg" alt="Treadmill"><p>Treadmill</p></div>
+                    <div class="col-md-3"><img src="/img/purchase3.jpg" alt="Adjustable Dumbbell"><p>Adjustable Dumbbell</p></div>
+                    <div class="col-md-3"><img src="/img/purchase4.jpg" alt="Kettlebell 3kg"><p>Kettlebell / 3kg</p></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="section">
+                <h2 style="font-weight: bolder;" >REVIEW CLIENT</h2>
+                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Diet Expert</strong><br>CFO</p>
+                        <div style="background-color: #1d3b80; color: white; padding: 15px; border-radius: 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!</div>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Cardio Trainer</strong><br>CEO</p>
+                        <div style="background-color: #1d3b80; color: white; padding: 15px; border-radius: 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h2 style="font-weight: bolder;" >CONTACT US</h2>
+                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p><strong>Mobile Number</strong>: +135 773 321 4442</p>
+                        <p><strong>Email Address</strong>: demo@demo.com</p>
+                        <p><strong>Make An Appointment</strong></p>
+                        <input type="text" placeholder="Your Name"><br>
+                        <input type="email" placeholder="Your Email"><br>
+                        <textarea placeholder="Your Message"></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <iframe src="https://maps.google.com/..." width="100%" height="250" style="border:0;" allowfullscreen=""></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <footer class="footer">
+                <div style="margin-left: 350px;">
+                <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu, fringilla scelerisque ipsum pulvinar hendrerit.
+                    Mauris at dapibus enim, ac convallis metus.<br> Vestibulum enim metus, mollis et convallis id, gravida a nunc. Proin ipsum lectus, tincidunt eu nunc quis, facilisis elementum nulla.</p>
+                </div>
+                <div  class="footer-container">
+                    <div class="footer-links">
+                        <h4>Information</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Classes</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Contact</a>
+                    </div>   
+                    <div class="footer-links">
+                        <h4>Helpful Links</h4>
+                        <a href="#">Services</a>
+                        <a href="#">Supports</a>
+                        <a href="#">Terms & Condition</a>
+                        <a href="#">Privacy Policy</a>
+                    </div>
+                </div>    
+            </div>   
+            </footer>
+        </div>
+    
+    
+</body>
+</html>
