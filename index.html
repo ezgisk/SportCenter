@@ -12,6 +12,7 @@
             font-family: Arial, sans-serif;
             text-align: center;
             font-weight: bolder;
+            
         }
         .navbar-brand img {
             height: 50px;
@@ -42,13 +43,12 @@
             display: flex;
             justify-content: space-between;
             text-align: center;
-            padding: 50px 330px;
+            
             background: #f5f9ff;
             flex-wrap: nowrap; 
             
         }
         .stat-item {
-
             background: #fdfeff;
             font-weight:bolder;       
             font-size: 1rem;
@@ -127,11 +127,6 @@
         .stats .stat-item:last-child {
             margin-right: 0; /* Son öğenin sağ tarafına boşluk vermemek için */
         }
-        .container {
-            width: 80%;
-            margin: auto;
-            padding: 20px;
-        }
         h2 {
             color: #1d3b80;
         }
@@ -146,9 +141,7 @@
             margin: 5px;
             border: none;
             cursor: pointer;
-        
         }
-        
         .yoga-btn {
             background-color: orange;
             color: white;
@@ -195,34 +188,84 @@
             margin-top: 40px;
 
         }
-        .footer {
-            background-color: #1d3b80;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            font-size: 12px; 
-            text-align: left;
+        .col-md-6 {
+            width: 50%;
+            padding: 10px;
         }
+        .contact-info {
+            display: flex;
+            gap: 30px;  /* Aralarındaki mesafe */
+            justify-content: center;  /* Yatayda ortalama */
+            align-items: center;  
+        }
+        .contact-info p {
+            margin: 0;  /* Paragrafların arasındaki boşluğu kaldır */
+        }
+        .section-contact h{
+            height: 40vh;
+        }
+        .section-contact h2{
+           padding-top: 20px;
+        }
+
+        .footer {
+            width: 100%; /* Tam genişlik sağlar */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #1E3A8A;
+            color: white;
+            padding: 10px 20px;
+            text-align: left;
+            margin: 0; /* Varsayılan margin'i sıfırlar */
+            box-sizing: border-box; /* Padding ve border'ı toplam genişliğe dahil eder */
+        }
+        .footer-content {
+            width: 100%;
+            max-width: 700px;
+            margin: 0 auto 20px; /* Centers the element horizontally */
+        }
+
         .footer-container {
             display: flex;
+            flex-wrap: nowrap; /* Keeps items on a single line */
             justify-content: center;
-            gap: 100px;
-            margin-top: 20px;
+            gap: 40px;
         }
+
         .footer-links {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 10px;
-            margin-right: 200px;
+            text-align: left;
+            flex: 1; /* Allows flexible width */
+            min-width: 150px; /* Sets minimum width */
         }
+
+        .footer-links h4 {
+            margin-bottom: 10px;
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
         .footer-links a {
             color: white;
             text-decoration: none;
+            margin-bottom: 5px;
         }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+
+            .footer-links {
+                flex: 1 1 100%; /* Each link group takes full width */
+                text-align: left;
+            }
+        }
+
+
     </style>
 </head>
 <body>
@@ -299,7 +342,7 @@
                     <button class="stretching-btn">Stretching</button>
                 </div>
             </div>
-            <div class="row" style="margin: 45px;">
+            <div class="row" >
                 <div class="col-md-6 yoga-info">
                     <h3 style="font-weight: bolder;">Why are your Yoga?</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit...
@@ -313,7 +356,7 @@
                     <p>Wednesday-Friday: 3:00pm - 6:00pm</p>
                 </div>
                 <div class="col-md-6 img-container">
-                    <img src="/img/yoga.jpg" alt="Yoga Class" width="650" height="6500">
+                    <img src="/yoga.jpg" alt="Yoga Class" width="650" height="6500">
                 </div>
             </div>
         </div> 
@@ -350,15 +393,14 @@
                 <h2 style="font-weight: bolder;">PURCHASE FROM US</h2>
                 <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at <br> Hampden-Sydney College.</p>
                 <div class="row">
-                    <div class="col-md-3"><img src="/img/purchase1.jpg" alt="Kettlebell 5kg"><p>Kettlebell / 5kg</p></div>
-                    <div class="col-md-3"><img src="/img/purchase2.jpg" alt="Treadmill"><p>Treadmill</p></div>
-                    <div class="col-md-3"><img src="/img/purchase3.jpg" alt="Adjustable Dumbbell"><p>Adjustable Dumbbell</p></div>
-                    <div class="col-md-3"><img src="/img/purchase4.jpg" alt="Kettlebell 3kg"><p>Kettlebell / 3kg</p></div>
+                    <div class="col-md-3"><img src="purchase1.jpg" alt="Kettlebell 5kg"><p>Kettlebell / 5kg</p></div>
+                    <div class="col-md-3"><img src="purchase2.jpg" alt="Treadmill"><p>Treadmill</p></div>
+                    <div class="col-md-3"><img src="purchase3.jpg" alt="Adjustable Dumbbell"><p>Adjustable Dumbbell</p></div>
+                    <div class="col-md-3"><img src="purchase4.jpg" alt="Kettlebell 3kg"><p>Kettlebell / 3kg</p></div>
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="section">
+        <div class="section">
                 <h2 style="font-weight: bolder;" >REVIEW CLIENT</h2>
                 <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
                 <div class="row">
@@ -373,13 +415,15 @@
                 </div>
             </div>
             
-            <div class="section">
+            <div class="section-contact">
                 <h2 style="font-weight: bolder;" >CONTACT US</h2>
                 <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
                 <div class="row">
                     <div class="col-md-6">
-                        <p><strong>Mobile Number</strong>: +135 773 321 4442</p>
-                        <p><strong>Email Address</strong>: demo@demo.com</p>
+                        <div class="contact-info">
+                            <p><strong>Mobile Number</strong>: <br>+135 773 321 4442</p>
+                            <p><strong>Email Address</strong>: <br>demo@demo.com</p>
+                        </div>
                         <p><strong>Make An Appointment</strong></p>
                         <input type="text" placeholder="Your Name"><br>
                         <input type="email" placeholder="Your Email"><br>
@@ -390,14 +434,13 @@
                     </div>
                 </div>
             </div>
-            
             <footer class="footer">
-                <div style="margin-left: 350px;">
-                <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu, fringilla scelerisque ipsum pulvinar hendrerit.
-                    Mauris at dapibus enim, ac convallis metus.<br> Vestibulum enim metus, mollis et convallis id, gravida a nunc. Proin ipsum lectus, tincidunt eu nunc quis, facilisis elementum nulla.</p>
+                <div class="footer-content">
+                    <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu, fringilla scelerisque ipsum pulvinar hendrerit.
+                        Mauris at dapibus enim, ac convallis metus.<br> Vestibulum enim metus, mollis et convallis id, gravida a nunc. Proin ipsum lectus, tincidunt eu nunc quis, facilisis elementum nulla.</p>
                 </div>
-                <div  class="footer-container">
+                <div class="footer-container">
                     <div class="footer-links">
                         <h4>Information</h4>
                         <a href="#">About Us</a>
@@ -413,10 +456,6 @@
                         <a href="#">Privacy Policy</a>
                     </div>
                 </div>    
-            </div>   
             </footer>
-        </div>
-    
-    
-</body>
+    </body>
 </html>
