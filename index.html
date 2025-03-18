@@ -186,17 +186,26 @@
         .section-trainers{
             background: #f5f9ff;
             margin-top: 40px;
-
         }
+        .section-client{
+            background-color: #f1f8ff;
+        }
+        .section-client h2{
+            padding-top: 20px;
+            font-weight: bolder;
+        }
+        
         .col-md-6 {
             width: 50%;
             padding: 10px;
+            justify-items: center;
+        }
+        .contact-us{         
+            text-align: left;
         }
         .contact-info {
             display: flex;
             gap: 30px;  /* Aralarındaki mesafe */
-            justify-content: center;  /* Yatayda ortalama */
-            align-items: center;  
         }
         .contact-info p {
             margin: 0;  /* Paragrafların arasındaki boşluğu kaldır */
@@ -206,8 +215,40 @@
         }
         .section-contact h2{
            padding-top: 20px;
+           font-weight: bolder;
         }
 
+        input, textarea {
+            width: 100%; /* Tam genişlikte */
+            padding: 10px;
+            margin-bottom: 15px; /* Elemanlar arasında boşluk */
+            background-color: #f1f8ff; /* Arka plan rengi */
+            border: 1px solid #ccc; /* İnce sınır */
+            border-radius: 5px; /* Kenarları yuvarlak yapar */
+            font-size: 16px; /* Yazı boyutu */
+            text-align: left; /* Metni sola hizalar */
+        }
+
+        textarea {
+            height: 100px; /* Yükseklik */
+        }
+        iframe {
+            border: 0;
+            height: 310px; /* Harita yüksekliği */
+            width: 150%;
+
+        }
+        @media (max-width: 767px) {
+            .col-md-6 {
+                width: 100%; /* Küçük ekranlarda her iki bölüm tam genişlikte olacak */
+                margin-bottom: 20px; /* Alt boşluk ekle */
+            }
+
+            iframe {
+                height: 300px;
+                width: 400px; /* iPhone ve diğer mobil cihazlarda haritanın yüksekliğini azalt */
+            }
+        }
         .footer {
             width: 100%; /* Tam genişlik sağlar */
             display: flex;
@@ -225,7 +266,6 @@
             max-width: 700px;
             margin: 0 auto 20px; /* Centers the element horizontally */
         }
-
         .footer-container {
             display: flex;
             flex-wrap: nowrap; /* Keeps items on a single line */
@@ -400,39 +440,70 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-                <h2 style="font-weight: bolder;" >REVIEW CLIENT</h2>
-                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
+
+          
+        
+        
+          <div class="section-client">
+                <h2>REVIEW CLIENT</h2>
+                <p style="margin: 0 auto; width: 80%; text-align: center;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
                 <div class="row">
-                    <div class="col-md-6">
-                        <p><strong>Diet Expert</strong><br>CFO</p>
-                        <div style="background-color: #1d3b80; color: white; padding: 15px; border-radius: 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!</div>
+                <!-- Client 1 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-center">
+                    <img src="img/client1.jpg" alt="Diet Expert" class="rounded-circle mr-3" style="width:80px; height:80px;">
+                    <div>
+                        <p class="mb-0"><strong>Diet Expert</strong></p>
+                        <p class="mb-0">CFO</p>
                     </div>
-                    <div class="col-md-6">
-                        <p><strong>Cardio Trainer</strong><br>CEO</p>
-                        <div style="background-color: #1d3b80; color: white; padding: 15px; border-radius: 10px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!</div>
                     </div>
+                    <div class="mt-3 mx-auto text-center" style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                    </div>
+                </div>
+                <!-- Client 2 -->
+                <div class="col-md-6 mb-4">
+                    <div class="d-flex align-items-center">
+                    <img src="img/client2.jpg" alt="Cardio Trainer" class="rounded-circle mr-3" style="width:80px; height:80px;">
+                    <div>
+                        <p class="mb-0"><strong>Cardio Trainer</strong></p>
+                        <p class="mb-0">CEO</p>
+                    </div>
+                    </div>
+                    <div class="mt-3 mx-auto text-center" style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                    </div>
+                </div>
                 </div>
             </div>
-            
             <div class="section-contact">
-                <h2 style="font-weight: bolder;" >CONTACT US</h2>
-                <p>Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="contact-info">
-                            <p><strong>Mobile Number</strong>: <br>+135 773 321 4442</p>
-                            <p><strong>Email Address</strong>: <br>demo@demo.com</p>
+                <h2>CONTACT US</h2>
+                <p style="margin: 0 auto; width: 80%; text-align: center;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-us">
+                                <div class="contact-info">
+                                    <p><strong>Mobile Number</strong>: <br>+135 773 321 4442</p>
+                                    <p><strong>Email Address</strong>: <br>demo@demo.com</p>
+                                </div>
+                                <p><strong>Make An Appointment</strong></p>
+                                <input type="text" placeholder="Your Name"><br>
+                                <input type="email" placeholder="Your Email"><br>
+                                <textarea placeholder="Your Message"></textarea>
+                            </div>
                         </div>
-                        <p><strong>Make An Appointment</strong></p>
-                        <input type="text" placeholder="Your Name"><br>
-                        <input type="email" placeholder="Your Email"><br>
-                        <textarea placeholder="Your Message"></textarea>
+                        <div class="col-md-6">
+                                <div class="contact-us">
+                                <!-- Google Maps Embed Code -->
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.6063581727175!2d127.08110495110875!3d37.50235839110672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9847087cb81d%3A0x20b60b0f40e495f2!2sSeoul%20City%20Hall!5e0!3m2!1sen!2skr!4v1612007110325!5m2!1sen!2skr" 
+                                        width="70%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                </div>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <iframe src="https://maps.google.com/..." width="100%" height="250" style="border:0;" allowfullscreen=""></iframe>
-                    </div>
-                </div>
             </div>
             <footer class="footer">
                 <div class="footer-content">
