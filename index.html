@@ -46,21 +46,29 @@
             font-weight: bolder;
         }
 
-            .stat-item {
-                background:#ffffff ;/* Şeffaf Beyaz Arka Plan */
-                padding: 20px;
-                border-radius: 10px;
-                margin: 10px;
-                box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            }
+        .stat-item {
+            background:white; /* Şeffaf Beyaz Arka Plan */
+            padding: 10px; /* İç boşluk küçültüldü */
+            border-radius: 2px;
+            margin: 5px; /* Kutular arasındaki boşluk azaldı */
+            text-align: center;
+            font-size: 14px; /* Yazılar küçültüldü */
+            min-width: 120px; /* Küçük ekranlarda minimum genişlik */
+        }
 
-            /* Küçük ekranlarda tüm kutuları alt alta diz */
-            @media (max-width: 768px) {
-                .stat-item {
-                    width: 80%;
-                    margin: 10px auto;
-                }
+        /* Mobilde 2 sütun, büyük ekranda 4 sütun */
+        @media (max-width: 576px) {
+            .stat-item {
+                flex: 0 0 50%; /* Yan yana iki kutu */
             }
+        }
+
+        @media (min-width: 768px) {
+            .stat-item {
+                flex: 0 0 12%; /* Yan yana dört kutu */
+                
+            }
+}
 
         .stat-item h3 {
             font-size: 1.4rem;
@@ -75,15 +83,62 @@
             top: 0;
             z-index: 1000;
         }
+        /* Navbar menüsü için */
+        .navbar-nav {
+            text-align: center; /* Mobilde menü ortalansın */
+        }
         .navbar-nav .nav-link {
             font-weight: bold;
             color: white !important;
         }
         .navbar-nav .btn {
             font-weight: bold;
+            height: 35px;
+            border-color: #774e11;
+            background: #fb9d00;
         }
+        /* Mobilde hamburger ikonu büyütelim */
+        .navbar-toggler {
+            border: none;
+            outline: none;
+        }
+
+        .navbar-toggler-icon {
+            width: 30px;
+            height: 30px;
+        }
+        /* Hamburger menüsü açıldığında tam ekran yapalım */
+        @media (max-width: 991px) {
+            .navbar-collapse {
+                position: absolute;
+                top: 60px; /* Navbar yüksekliği kadar */
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.9); /* Hafif siyah opak arka plan */
+                padding: 20px 0;
+                text-align: center; /* Linkleri ortala */
+                z-index: 999; /* Üstte tut */
+            }
+
+            .navbar-nav {
+                width: 100%;
+            }
+
+            .nav-item {
+                margin: 10px 0; /* Linkler arasına boşluk */
+            }
+
+            /* "JOIN US" butonunun genişliği tam olsun */
+            .nav-item .btn {
+                width: 30%;
+                padding: 10px 0;
+                font-size: 18px;
+            }
+        }
+
+
         .custom-btn {
-            background-color: #113e6e;  /* Mavi arka plan */
+            background-color: #315787;  /* Mavi arka plan */
             border-radius: 3px;         /* Yuvarlatılmış köşeler */
             padding: 2px 15px;          /* İçerik boşluğu */
             text-decoration: none;       /* Link altını kaldırma */
@@ -103,7 +158,7 @@
             font-size: 1.15rem;                    /* Metin boyutu */
         }
         .btn-primary{
-            background-color: #113e6e;
+            background-color: #2f5693;
             border-radius: 3px;         /* Yuvarlatılmış köşeler */
             padding: 2px 15px;          /* İçerik boşluğu */
             text-decoration: none;       /* Link altını kaldırma */
@@ -118,19 +173,48 @@
             display: inline-block;       /* Satır içi blok davranışı */
             font-size: 14px; 
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
-            margin-left: 15px;
+            
         }
-        .button-div{
-            margin-top: 15px;
-            margin-left: 15px;
-        }
-        .stats .stat-item {
-            margin-right: 5px; /* Sağ tarafa 5px boşluk */
+        .button-div {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap; /* Küçük ekranlarda butonların alt alta geçmesini sağlar */
+            margin-top: 20px;
         }
 
-        .stats .stat-item:last-child {
-            margin-right: 0; /* Son öğenin sağ tarafına boşluk vermemek için */
+        .button-div .btn {
+            padding: 12px 24px; /* Varsayılan buton boyutu */
+            font-size: 18px; /* Varsayılan yazı boyutu */
+            transition: all 0.3s ease-in-out; /* Geçiş efekti */
         }
+
+        /* Küçük ekranlarda (576px altı) butonlar tam genişlik */
+        @media (max-width: 576px) {
+            .button-div .btn {
+                width: 100%; /* Tam genişlik */
+                font-size: 20px; /* Yazıyı biraz büyüt */
+                padding: 15px 28px; /* Butonları uzat */
+            }
+            .btn-outline-light{
+            border-radius: 3px;         /* Yuvarlatılmış köşeler */
+            padding: 2px 15px;          /* İçerik boşluğu */
+            text-decoration: none;       /* Link altını kaldırma */
+            display: inline-block;       /* Satır içi blok davranışı */
+            font-size: 14px; 
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
+            
+        }
+        }
+
+        /* Orta ekranlarda (576px - 991px) butonlar biraz geniş */
+        @media (min-width: 576px) and (max-width: 991px) {
+            .button-div .btn {
+                width: 45%; /* Yan yana iki buton */
+                font-size: 18px;
+                padding: 14px 26px;
+            }
+        }
+
         h2 {
             color: #1d3b80;
         }
