@@ -12,12 +12,10 @@
             font-family: Arial, sans-serif;
             text-align: center;
             font-weight: bolder;
+            scroll-behavior: smooth;
             
         }
-        .navbar-brand img {
-            height: 50px;
-            width: auto;
-        }
+
         .hero-section {
             background: url('/img/hero-man.jpg') no-repeat center center/cover;
             color: white;
@@ -77,16 +75,26 @@
         }
         
         .navbar {
-            background: rgba(0, 0, 0, 0) !important;
-            position: absolute;
-            width: 100%;
+            position: fixed;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
+            background: transparent !important;
+            transition: background-color 0.3s ease-in-out;
         }
+
+        /* 🔹 Scroll yapınca arka plan değişecek */
+        .navbar.scrolled {
+            background: #355592 !important; 
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
         /* Navbar menüsü için */
         .navbar-nav {
             text-align: center; /* Mobilde menü ortalansın */
         }
+        
         .navbar-nav .nav-link {
             font-weight: bold;
             color: white !important;
@@ -107,6 +115,27 @@
             width: 30px;
             height: 30px;
         }
+        
+
+        #navbar {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .fixed-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.9); /* Hafif saydamlık */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
+        }
+
         /* Hamburger menüsü açıldığında tam ekran yapalım */
         @media (max-width: 991px) {
             .navbar-collapse {
@@ -494,7 +523,8 @@
 </head>
 <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- 🔹 Navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
@@ -515,7 +545,38 @@
         </div>
     </nav>
     
-    <div class="hero-section">
+    
+    <!-- JOIN US Modal -->
+<div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="joinModalLabel">Join Us</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phone" class="form-label">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <button type="submit" class="btn btn-warning w-100">Join Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <div class="hero-section" id="home">
         <div class="container hero-content">
             <a class="text-white fw-bold custom-btn" href="#">
                 POWERFULL
@@ -557,7 +618,7 @@
     </div>
 </div>
 
-    <div class="section">
+    <div class="section" id="classes">
         <h2 style="font-weight: bolder;">OUR CLASSES</h2>
         <p class="text-center mb-5" style="font-weight: bolder;">
             Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
@@ -619,7 +680,7 @@
   
 
             <!-- OUR BEST TRAINERS Section -->
-            <div class="section-trainers container-fluid py-5 px-5">
+            <div class="section-trainers container-fluid py-5 px-5" id="trainers">
                 <h2 class="text-center mb-4">OUR BEST TRAINERS</h2>
                 <p class="text-center mb-5">
                 Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
@@ -735,7 +796,7 @@
                 </div>
             </div>
   
-            <div class="section-client container-fluid py-4">
+            <div class="section-client container-fluid py-4" id="review">
                 <h2 class="text-center">REVIEW CLIENT</h2>
                 <p class="text-center" style="width: 100%; margin: 0 auto;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
                     <div class="row">
@@ -771,7 +832,7 @@
                         </div>
                     </div>
             </div>
-            <div class="section-contact">
+            <div class="section-contact" id="contact">
                 <h2>CONTACT US</h2>
                 <p style="margin: 0 auto; width: 80%; text-align: center;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
                     <div class="row">
@@ -820,6 +881,16 @@
                 </div>    
             </footer>
             <script>
+
+                window.addEventListener("scroll", function () {
+                                var navbar = document.getElementById("navbar");
+                                if (window.scrollY > 50) {
+                                    navbar.classList.add("scrolled");
+                                } else {
+                                    navbar.classList.remove("scrolled");
+                                }
+                            });
+
                 function changeContent(classType, btn) {
                     // 🔹 Tüm butonların "active" sınıfını kaldır
                     document.querySelectorAll(".buttons button").forEach(button => {
