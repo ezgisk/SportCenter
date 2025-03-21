@@ -1,1002 +1,484 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Powerfull Gym</title>
+
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <!-- jQuery (needed for Bootstrap functionality) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            font-weight: bolder;
-            scroll-behavior: smooth;
-            
-        }
-
-        .hero-section {
-            background: url('/img/hero-man.jpg') no-repeat center center/cover;
-            color: white;
-            text-align: left;
-            padding: 100px 20px;
-            position: relative;
-        }
-        .hero-section::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-        }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            justify-content:left;
-        }
-        .stats-section {
-            background-color: #f1f8ff; /* Bootstrap Primary Mavi */
-            color: black;
-            padding: 40px 0;
-            font-weight: bolder;
-        }
-
-        .stat-item {
-            background:white; /* Şeffaf Beyaz Arka Plan */
-            padding: 10px; /* İç boşluk küçültüldü */
-            border-radius: 2px;
-            margin: 5px; /* Kutular arasındaki boşluk azaldı */
-            text-align: center;
-            font-size: 14px; /* Yazılar küçültüldü */
-            min-width: 120px; /* Küçük ekranlarda minimum genişlik */
-        }
-
-        /* Mobilde 2 sütun, büyük ekranda 4 sütun */
-        @media (max-width: 576px) {
-            .stat-item {
-                flex: 0 0 50%; /* Yan yana iki kutu */
-            }
-        }
-
-        @media (min-width: 768px) {
-            .stat-item {
-                flex: 0 0 12%; /* Yan yana dört kutu */
-                
-            }
-}
-
-        .stat-item h3 {
-            font-size: 1.4rem;
-            color: #113e6e;
-            font-weight:bolder;        
-        }
-        
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: transparent !important;
-            transition: background-color 0.3s ease-in-out;
-        }
-
-        /* 🔹 Scroll yapınca arka plan değişecek */
-        .navbar.scrolled {
-            background: #355592 !important; 
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Navbar menüsü için */
-        .navbar-nav {
-            text-align: center; /* Mobilde menü ortalansın */
-        }
-        
-        .navbar-nav .nav-link {
-            font-weight: bold;
-            color: white !important;
-        }
-        .navbar-nav .btn {
-            font-weight: bold;
-            height: 35px;
-            border-color: #774e11;
-            background: #fb9d00;
-        }
-        /* Mobilde hamburger ikonu büyütelim */
-        .navbar-toggler {
-            border: none;
-            outline: none;
-        }
-
-        .navbar-toggler-icon {
-            width: 30px;
-            height: 30px;
-        }
-        
-
-        #navbar {
-            transition: all 0.3s ease-in-out;
-        }
-
-        .fixed-nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background-color: rgba(0, 0, 0, 0.9); /* Hafif saydamlık */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-        .navbar-brand img {
-            height: 50px;
-            width: auto;
-        }
-
-        /* Hamburger menüsü açıldığında tam ekran yapalım */
-        @media (max-width: 991px) {
-            .navbar-collapse {
-                position: absolute;
-                top: 60px; /* Navbar yüksekliği kadar */
-                left: 0;
-                width: 100%;
-                background: rgba(0, 0, 0, 0.9); /* Hafif siyah opak arka plan */
-                padding: 20px 0;
-                text-align: center; /* Linkleri ortala */
-                z-index: 999; /* Üstte tut */
-            }
-
-            .navbar-nav {
-                width: 100%;
-            }
-
-            .nav-item {
-                margin: 10px 0; /* Linkler arasına boşluk */
-            }
-
-            /* "JOIN US" butonunun genişliği tam olsun */
-            .nav-item .btn {
-                width: 30%;
-                
-                font-size: 18px;
-            }
-        }
-
-
-        .custom-btn {
-            background-color: #315787;  /* Mavi arka plan */
-            border-radius: 3px;         /* Yuvarlatılmış köşeler */
-            padding: 2px 15px;          /* İçerik boşluğu */
-            text-decoration: none;       /* Link altını kaldırma */
-            display: inline-block;       /* Satır içi blok davranışı */
-            font-size: 14px; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
-        }
-        .overlay {
-            background-color: rgba(0, 0, 0, 0.5);  /* Yarı saydam siyah arka plan */
-            padding: 20px;                         /* İçerik boşluğu */
-            border-radius: 10px;                   /* Yuvarlatılmış köşeler */
-            display: inline-block;                 /* Satır içi blok davranışı */
-        }
-
-        .lead {
-            color: white;                          /* Beyaz metin rengi */
-            font-size: 1.15rem;                    /* Metin boyutu */
-        }
-        .btn-primary{
-            background-color: #2f5693;
-            border-radius: 3px;         /* Yuvarlatılmış köşeler */
-            padding: 2px 15px;          /* İçerik boşluğu */
-            text-decoration: none;       /* Link altını kaldırma */
-            display: inline-block;       /* Satır içi blok davranışı */
-            font-size: 14px; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
-        }
-        .btn-outline-light{
-            border-radius: 3px;         /* Yuvarlatılmış köşeler */
-            padding: 2px 15px;          /* İçerik boşluğu */
-            text-decoration: none;       /* Link altını kaldırma */
-            display: inline-block;       /* Satır içi blok davranışı */
-            font-size: 14px; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
-            
-        }
-        .button-div {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap; /* Küçük ekranlarda butonların alt alta geçmesini sağlar */
-            margin-top: 20px;
-        }
-
-        .button-div .btn {
-            padding: 12px 24px; /* Varsayılan buton boyutu */
-            font-size: 18px; /* Varsayılan yazı boyutu */
-            transition: all 0.3s ease-in-out; /* Geçiş efekti */
-        }
-
-        /* Küçük ekranlarda (576px altı) butonlar tam genişlik */
-        @media (max-width: 577px) {
-            .button-div .btn {
-                width: 100%; /* Tam genişlik */
-                font-size: 20px; /* Yazıyı biraz büyüt */
-                padding: 15px 28px; /* Butonları uzat */
-            }
-            .btn-outline-light{
-            border-radius: 3px;         /* Yuvarlatılmış köşeler */
-            padding: 2px 15px;          /* İçerik boşluğu */
-            text-decoration: none;       /* Link altını kaldırma */
-            display: inline-block;       /* Satır içi blok davranışı */
-            font-size: 14px; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);  /* Yazıya gölge */
-            
-        }
-        }
-
-        /* Orta ekranlarda (576px - 991px) butonlar biraz geniş */
-        @media (min-width: 576px) and (max-width: 991px) {
-            .button-div .btn {
-                width: 45%; /* Yan yana iki buton */
-                font-size: 18px;
-                padding: 14px 26px;
-            }
-        }
-
-        h2 {
-            color: #1d3b80;
-        }
-        .h3{
-            font-weight: bolder;
-        }
-        .section-trainers .card {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .section-trainers .card-body {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(53, 85, 146, 0.9); /* Arka plan rengi */
-            color: white;
-            padding: 20px;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(100%);
-            transition: all 0.3s ease-in-out;
-        }
-
-        .section-trainers .card:hover .card-body {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .section-trainers .card img {
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .section-trainers .card:hover img {
-            transform: scale(1.1);
-        }
-
-
-        
-        .section {
-            position: relative;
-            padding: 50px 20px;
-            text-align: center;
-            background: transparent;
-            overflow: hidden; /* Taşmaları önlemek için */
-        }
-
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #f2f2f3; /* Arka planı miras alır */
-            clip-path: polygon(41% 0%, 100% 0, 100% 100%, 53% 100%);
-            z-index: -1; /* İçeriğin üstünde görünmesini engeller */
-        }
-        .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 80px;
-                }
-                @media (max-width: 577px) {
-                    .buttons button {
-                        flex: 1 1 calc(50% - 5px); /* İki buton yan yana */
-                        text-align: center;
-                    }
-                }
-
-        .buttons button {
-            padding: 12px 18px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 16px;
-            color: white;
-            background-color: #234a85; /* 🔹 Varsayılan mavi renk */
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .buttons button:hover {
-            transform: scale(1.05);
-        }
-
-        .buttons button.active {
-            background-color: orange !important; /* 🔹 Seçilen buton turuncu olacak */
-            color: black;
-        }
-
-        .content-container {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .text-content {
-            max-width: 500px;
-            text-align: left;
-        }
-
-        .img-container img {
-            width: 100%;
-            max-width: 400px; /* 🔹 Resmin boyutu maksimum 400px olacak */
-            border-radius: 10px;
-        }
-
-        /* 🔹 Küçük ekranlarda dikey hizalama */
-        @media (max-width: 768px) {
-            .content-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .text-content {
-                text-align: center;
-            }
-            .buttons {
-                display: flex;
-                justify-content: center;
-                gap: 10px; /* 🔹 Butonlar arasına boşluk eklendi */
-                margin-bottom: 20px;
-                }
-        }
-
-
-        .bmi-chart-container {
-        position: relative;
-        width: 80%;
-        max-width: 400px;
-        text-align: center;
-        }
-
-        .bmi-chart {
-            width: 100%;
-        }
-
-        .bmi-marker {
-            position: absolute;
-            bottom: -40px; /* Ok resmin altında olacak */
-            left: 50%;
-            font-size: 36px; /* Ok boyutu büyütüldü */
-            color: orange; /* Ok turuncu */
-            transition: left 0.5s ease-in-out;
-        }
-        .section-bmi .row {
-            display: flex;
-            align-items: center; /* Dikey hizalama */
-            justify-content: center; /* Yatay ortalama */
-            text-align: center; /* İçerik ortalama */
-        }
-
-        .bmi-calculator input {
-            width: 80%;
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        /* Küçük ekranlar için */
-        @media (max-width: 576px) {
-            .section-bmi .row {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-
-            .section-bmi .col-md-6 {
-                width: 100%;
-                padding-left: 0 !important;
-            }
-
-            .bmi-calculator {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .bmi-calculator input {
-                width: 80%;
-                margin-bottom: 10px;
-                text-align: center;
-            }
-
-            .bmi-chart-container {
-                width:
-                 90%;
-            }
-            .section-bmi .row {
-                flex-direction: column;
-            }
-
-            .bmi-chart-container {
-                margin-top: 20px;
-    }
-        }
-
-        .section-trainers {
-            background: #f1f8ff;
-            margin-top: 40px;
-        }
-        .section-trainers h2{
-            padding-top: 20px;
-            font-weight: bolder;
-        }
-        .section-client{
-            background-color: #f1f8ff;
-        }
-        .section-client h2{
-            padding-top: 20px;
-            font-weight: bolder;
-        }
-        .section-purchase h2{
-            padding-top: 20px;
-            font-weight: bolder;
-        }
-        .col-md-6 {
-            width: 50%;
-            padding: 10px;
-            justify-items: center;
-        }
-        .contact-us{         
-            text-align: left;
-        }
-        .contact-info {
-            display: flex;
-            gap: 30px;  /* Aralarındaki mesafe */
-        }
-        .contact-info p {
-            margin: 0;  /* Paragrafların arasındaki boşluğu kaldır */
-        }
-        .section-contact h{
-            height: 40vh;
-        }
-        .section-contact h2{
-           padding-top: 20px;
-           font-weight: bolder;
-        }
-
-        input, textarea {
-            width: 100%; /* Tam genişlikte */
-            padding: 10px;
-            margin-bottom: 15px; /* Elemanlar arasında boşluk */
-            background-color: #f1f8ff; /* Arka plan rengi */
-            border: 1px solid #ccc; /* İnce sınır */
-            border-radius: 5px; /* Kenarları yuvarlak yapar */
-            font-size: 16px; /* Yazı boyutu */
-            text-align: left; /* Metni sola hizalar */
-        }
-
-        textarea {
-            height: 100px; /* Yükseklik */
-        }
-        iframe {
-            border: 0;
-            height: 310px; /* Harita yüksekliği */
-            width: 150%;
-
-        }
-        @media (max-width: 767px) {
-            .col-md-6 {
-                width: 100%; /* Küçük ekranlarda her iki bölüm tam genişlikte olacak */
-                margin-bottom: 20px; /* Alt boşluk ekle */
-            }
-
-            iframe {
-                height: 300px;
-                width: 400px; /* iPhone ve diğer mobil cihazlarda haritanın yüksekliğini azalt */
-            }
-        }
-        .footer {
-            width: 100%; /* Tam genişlik sağlar */
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background: #1E3A8A;
-            color: white;
-            padding: 10px 20px;
-            text-align: left;
-            margin: 0; /* Varsayılan margin'i sıfırlar */
-            box-sizing: border-box; /* Padding ve border'ı toplam genişliğe dahil eder */
-        }
-        .footer-content {
-            width: 100%;
-            max-width: 700px;
-            margin: 0 auto 20px; /* Centers the element horizontally */
-        }
-        .footer-container {
-            display: flex;
-            flex-wrap: nowrap; /* Keeps items on a single line */
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            text-align: left;
-            flex: 1; /* Allows flexible width */
-            min-width: 150px; /* Sets minimum width */
-        }
-
-        .footer-links h4 {
-            margin-bottom: 10px;
-            font-size: 20px;
-            font-weight: bolder;
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            margin-bottom: 5px;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-
-            .footer-links {
-                flex: 1 1 100%; /* Each link group takes full width */
-                text-align: left;
-            }
-        }
-
-
-    </style>
 </head>
+
 <body>
-    
-            <!-- 🔹 Navbar -->
-            <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
-                <div class="container">
-                    <a class="navbar-brand" href="#">
-                        <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
-                    </a>            
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
-                            <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#trainers">Trainers</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#review">Review</a></li>
-                            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-                            <li class="nav-item"><a class="btn btn-warning text-white" href="#join">JOIN US</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-    
-    
-                <!-- JOIN US Modal -->
-            <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="joinModalLabel">Join Us</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <form>
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required>
-                                </div>
-                                <button type="submit" class="btn btn-warning w-100">Join Now</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+
+    <!-- 🔹 Navigation Bar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Brand Logo -->
+            <a class="navbar-brand" href="#">
+                <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
+            </a>
+
+            <!-- Responsive Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Navbar Items -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#classes">Classes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#trainers">Trainers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#review">Review</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item"><a class="btn btn-warning text-white" href="#join">JOIN US</a></li>
+                </ul>
             </div>
+        </div>
+    </nav>
 
+    <!-- 🔹 Join Us Modal -->
+    <div class="modal fade" id="joinModal" tabindex="-1" aria-labelledby="joinModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="joinModalLabel">Join Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
 
-            <div class="hero-section" id="home">
-                <div class="container hero-content">
-                    <a class="text-white fw-bold custom-btn" href="#">
-                        POWERFULL
-                    </a>            
-                    <h1 class="display-4 fw-bold ">Group</h1>
-                    <h1 class="display-4 fw-bold">Practice</h1>
-                    <h1 class="display-4 fw-bold">With Trainer</h1>
-                    <div class="overlay">
-                        <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit<br>
-                        aut iste. Velit porro rerum, unde modi ipsam exercitationem laudantium<br>
-                        illum. Id, laborum? Totam, dicta nisi. Voluptates, vero id. Perferendis.</p>
-                    </div>
-                    <div class="button-div">           
-                    <button class="btn btn-primary">Sign Up</button>
-                    <button class="btn btn-outline-light">Details</button>
-                    </div>
-                </div>
-            </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Full Name Input -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your full name"
+                                required>
+                        </div>
 
-        <!-- Bootstrap 5 Kullanarak Responsive Sayı Alanı -->
-        <div class="container-fluid text-center stats-section">
-            <div class="row justify-content-center">
-                <div class="col-6 col-sm-6 col-md-3 stat-item">
-                    <h3>325</h3>
-                    <p>Course</p>
-                </div>
-                <div class="col-6 col-sm-6 col-md-3 stat-item">
-                    <h3>405</h3>
-                    <p>Work Out</p>
-                </div>
-                <div class="col-6 col-sm-6 col-md-3 stat-item">
-                    <h3>305</h3>
-                    <p>Working Hour</p>
-                </div>
-                <div class="col-6 col-sm-6 col-md-3 stat-item">
-                    <h3>705</h3>
-                    <p>Happy Client</p>
+                        <!-- Email Input -->
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <!-- Phone Number Input -->
+                        <div class="mb-3">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number"
+                                required>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-warning w-100">Join Now</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-            <div class="section" id="classes">
-                <h2 style="font-weight: bolder;">OUR CLASSES</h2>
-                <p class="text-center mb-5" style="font-weight: bolder;">
-                    Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
+    <!-- 🔹 Hero Section -->
+    <div class="hero-section" id="home">
+        <div class="container hero-content">
+            <a class="text-white fw-bold custom-btn" href="#">POWERFULL</a>
+            <h1 class="display-4 fw-bold">Group</h1>
+            <h1 class="display-4 fw-bold">Practice</h1>
+            <h1 class="display-4 fw-bold">With Trainer</h1>
+
+            <div class="overlay">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus odit aut iste.
+                    Velit porro rerum, unde modi ipsam exercitationem laudantium illum. Id, laborum?
+                    Totam, dicta nisi. Voluptates, vero id. Perferendis.
                 </p>
-            
-                <div class="buttons">
-                    <button class="yoga-btn active" onclick="changeContent('yoga', this)">Yoga</button>
-                    <button class="group-btn" onclick="changeContent('group', this)">Group</button>
-                    <button class="solo-btn" onclick="changeContent('solo', this)">Solo</button>
-                    <button class="stretching-btn" onclick="changeContent('stretching', this)">Stretching</button>
+            </div>
+
+            <div class="button-div">
+                <button class="btn btn-primary">Sign Up</button>
+                <button class="btn btn-outline-light">Details</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🔹 Responsive Statistics Section -->
+    <div class="container-fluid text-center stats-section">
+        <div class="row justify-content-center">
+            <!-- Courses Statistic -->
+            <div class="col-6 col-sm-6 col-md-3 stat-item">
+                <h3>325</h3>
+                <p>Course</p>
+            </div>
+
+            <!-- Work Out Statistic -->
+            <div class="col-6 col-sm-6 col-md-3 stat-item">
+                <h3>405</h3>
+                <p>Work Out</p>
+            </div>
+
+            <!-- Working Hours Statistic -->
+            <div class="col-6 col-sm-6 col-md-3 stat-item">
+                <h3>305</h3>
+                <p>Working Hour</p>
+            </div>
+
+            <!-- Happy Clients Statistic -->
+            <div class="col-6 col-sm-6 col-md-3 stat-item">
+                <h3>705</h3>
+                <p>Happy Client</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="classes">
+        <h2 style="font-weight: bolder;">OUR CLASSES</h2>
+        <p class="text-center mb-5" style="font-weight: bolder;">
+            Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
+        </p>
+
+        <div class="buttons">
+            <button class="yoga-btn active" onclick="changeContent('yoga', this)">Yoga</button>
+            <button class="group-btn" onclick="changeContent('group', this)">Group</button>
+            <button class="solo-btn" onclick="changeContent('solo', this)">Solo</button>
+            <button class="stretching-btn" onclick="changeContent('stretching', this)">Stretching</button>
+        </div>
+
+        <div class="content-container">
+            <div class="text-content">
+                <h3 id="title" style="font-weight: bolder;">Why choose Yoga?</h3>
+                <p id="description">Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to
+                    improve your mental and physical well-being.</p>
+                <h4 style="font-weight: bolder;">Class Schedule</h4>
+                <p id="schedule">Saturday-Sunday: 8:00am - 10:00am</p>
+                <p>Monday-Tuesday: 10:00am - 12:00pm</p>
+                <p>Wednesday-Friday: 3:00pm - 6:00pm</p>
+            </div>
+            <div class="img-container">
+                <img id="classImage" src="img/yoga.jpg" alt="Yoga Class">
+            </div>
+        </div>
+    </div>
+
+    <div class="section-bmi">
+        <div class="row d-flex align-items-center justify-content-center text-center">
+            <!-- BMI Açıklaması ve Form -->
+            <div class="col-md-6 d-flex flex-column align-items-center">
+                <h2 style="font-weight: bolder;">BMI Calculator</h2>
+                <p>Calculate your BMI and check your category.</p>
+                <div class="bmi-calculator">
+                    <input type="number" id="height" placeholder="Your Height (cm)" oninput="calculateBMI()"> cm
+                    <input type="number" id="weight" placeholder="Your Weight (kg)" oninput="calculateBMI()"> kg
                 </div>
-            
-                <div class="content-container">
-                    <div class="text-content">
-                        <h3 id="title" style="font-weight: bolder;">Why choose Yoga?</h3>
-                        <p id="description">Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to improve your mental and physical well-being.</p>
-                        <h4 style="font-weight: bolder;">Class Schedule</h4>
-                        <p id="schedule">Saturday-Sunday: 8:00am - 10:00am</p>
-                        <p>Monday-Tuesday: 10:00am - 12:00pm</p>
-                        <p>Wednesday-Friday: 3:00pm - 6:00pm</p>
-                    </div>
-                    <div class="img-container">
-                        <img id="classImage" src="img/yoga.jpg" alt="Yoga Class">
-                    </div>
+                <p id="bmi-result"></p>
+            </div>
+
+            <!-- BMI Grafik -->
+            <div class="col-md-6 d-flex justify-content-center">
+                <div class="bmi-chart-container">
+                    <img src="/img/bmi-index.jpg" alt="Body Mass Index Chart" class="bmi-chart">
+                    <div class="bmi-marker" id="bmi-marker">▲</div>
                 </div>
             </div>
-                
-            <div class="section-bmi">
-                <div class="row d-flex align-items-center justify-content-center text-center">
-                    <!-- BMI Açıklaması ve Form -->
-                    <div class="col-md-6 d-flex flex-column align-items-center">
-                        <h2 style="font-weight: bolder;">BMI Calculator</h2>
-                        <p>Calculate your BMI and check your category.</p>
-                        <div class="bmi-calculator">
-                            <input type="number" id="height" placeholder="Your Height (cm)" oninput="calculateBMI()"> cm
-                            <input type="number" id="weight" placeholder="Your Weight (kg)" oninput="calculateBMI()"> kg
-                        </div>
-                        <p id="bmi-result"></p>
-                    </div>
-            
-                    <!-- BMI Grafik -->
-                    <div class="col-md-6 d-flex justify-content-center">
-                        <div class="bmi-chart-container">
-                            <img src="/img/bmi-index.jpg" alt="Body Mass Index Chart" class="bmi-chart">
-                            <div class="bmi-marker" id="bmi-marker">▲</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- OUR BEST TRAINERS Section -->
-            <div class="section-trainers container-fluid py-5 px-5" id="trainers">
-                <h2 class="text-center mb-4">OUR BEST TRAINERS</h2>
-                <p class="text-center mb-5">
-                Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
-                </p>
-                
-                <div class="row justify-content-center">
-                <!-- Trainer 1 -->
-                <div class="col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100 text-center shadow">
+        </div>
+    </div>
+    <!-- OUR BEST TRAINERS Section -->
+    <div class="section-trainers container-fluid py-5 px-5" id="trainers">
+        <h2 class="text-center mb-4">OUR BEST TRAINERS</h2>
+        <p class="text-center mb-5">
+            Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
+        </p>
+
+        <div class="row justify-content-center">
+            <!-- Trainer 1 -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="card h-100 text-center shadow">
                     <div style="padding:20px; text-align:center;">
-                        <img src="img/trainer1.jpg" class="card-img-top img-fluid" alt="Trainer 1" style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
+                        <img src="img/trainer1.jpg" class="card-img-top img-fluid" alt="Trainer 1"
+                            style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Jane Runner</h5>
                         <p class="card-text">
-                        Expert in running, cardio workouts, and personal fitness plans.
+                            Expert in running, cardio workouts, and personal fitness plans.
                         </p>
                     </div>
-                    </div>
                 </div>
-                
-                <!-- Trainer 2 -->
-                <div class="col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100 text-center shadow">
+            </div>
+
+            <!-- Trainer 2 -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="card h-100 text-center shadow">
                     <div style="padding:20px; text-align:center;">
-                        <img src="img/trainer2.jpg" class="card-img-top img-fluid" alt="Trainer 2" style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
+                        <img src="img/trainer2.jpg" class="card-img-top img-fluid" alt="Trainer 2"
+                            style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Mark Lifter</h5>
                         <p class="card-text">
-                        Specialized in bodybuilding, strength training, and nutrition.
+                            Specialized in bodybuilding, strength training, and nutrition.
                         </p>
                     </div>
-                    </div>
                 </div>
-                
-                <!-- Trainer 3 -->
-                <div class="col-sm-6 col-md-4 mb-4">
-                    <div class="card h-100 text-center shadow">
+            </div>
+
+            <!-- Trainer 3 -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="card h-100 text-center shadow">
                     <div style="padding:20px; text-align:center;">
-                        <img src="img/trainer3.jpg" class="card-img-top img-fluid" alt="Trainer 3" style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
+                        <img src="img/trainer3.jpg" class="card-img-top img-fluid" alt="Trainer 3"
+                            style="max-width:300px; height:auto; margin:auto; border:3px solid #f0ac30; border-radius:15px;">
                     </div>
                     <div class="card-body">
                         <h5 class="card-title">Sarah Flex</h5>
                         <p class="card-text">
-                        Focuses on HIIT, yoga, and functional strength programs.
+                            Focuses on HIIT, yoga, and functional strength programs.
                         </p>
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
-            <!-- PURCHASE FROM US Section -->
-            <div class="section-purchase container py-5">
-                <h2>PURCHASE FROM US</h2>
-                <p class="text-center mb-5">
-                Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
-                </p>
-                
-                <div class="row">
-                <!-- Product 1 -->
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="card h-100 text-center shadow">
+        </div>
+    </div>
+    <!-- PURCHASE FROM US Section -->
+    <div class="section-purchase container py-5">
+        <h2>PURCHASE FROM US</h2>
+        <p class="text-center mb-5">
+            Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.
+        </p>
+
+        <div class="row">
+            <!-- Product 1 -->
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="card h-100 text-center shadow">
                     <img src="img/purchase1.jpg" class="card-img-top" alt="Kettlebell / 5kg">
                     <div class="card-body">
                         <h5 class="card-title">Kettlebell / 5kg</h5>
                         <p class="card-text"><s>$80.95</s>/ $50.95</p>
-                        <!-- Sepet ikonu -->
-                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">                          
+                        <!-- Cart icon -->
+                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">
                         <button class="btn btn-primary">Add To Cart</button>
                     </div>
-                    </div>
                 </div>
-                <!-- Product 2 -->
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="card h-100 text-center shadow">
+            </div>
+            <!-- Product 2 -->
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="card h-100 text-center shadow">
                     <img src="img/purchase2.jpg" class="card-img-top" alt="Treadmill">
                     <div class="card-body">
                         <h5 class="card-title">Treadmill</h5>
                         <p class="card-text"><s>$80.95</s> / $50.95</p>
-                        <!-- Sepet ikonu -->
-                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">  
+                        <!-- Cart icon -->
+                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">
                         <button class="btn btn-primary">Add To Cart</button>
                     </div>
-                    </div>
                 </div>
-                <!-- Product 3 -->
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="card h-100 text-center shadow">
+            </div>
+            <!-- Product 3 -->
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="card h-100 text-center shadow">
                     <img src="img/purchase3.jpg" class="card-img-top" alt="Adjustable Dumbbell">
                     <div class="card-body">
                         <h5 class="card-title">Adjustable Dumbbell</h5>
                         <p class="card-text"><s>$80.95 </s>/ $50.95</p>
-                        <!-- Sepet ikonu -->
-                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">        
+                        <!-- Cart icon -->
+                        <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">
                         <button class="btn btn-primary">Add To Cart</button>
                     </div>
-                    </div>
                 </div>
-                <!-- Product 4 -->
-                <div class="col-sm-6 col-md-3 mb-4">
-                    <div class="card h-100 text-center shadow">
+            </div>
+            <!-- Product 4 -->
+            <div class="col-sm-6 col-md-3 mb-4">
+                <div class="card h-100 text-center shadow">
                     <img src="img/purchase4.jpg" class="card-img-top" alt="Kettlebell / 3kg">
                     <div class="card-body">
                         <h5 class="card-title">Kettlebell / 3kg</h5>
                         <p class="card-text"><s>$80.95</s>/ $50.95</p>
-                        <!-- Sepet ikonu -->
+                        <!-- Cart icon -->
                         <img src="img/chart.png" alt="Shopping Cart" style="width:20px; margin-right:5px;">
                         <button class="btn btn-primary">Add To Cart</button>
                     </div>
-                    </div>
-                </div>
                 </div>
             </div>
-  
-            <div class="section-client container-fluid py-4" id="review">
-                <h2 class="text-center">REVIEW CLIENT</h2>
-                <p class="text-center" style="width: 100%; margin: 0 auto;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
-                    <div class="row">
-                        <!-- Client 1 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="d-flex align-items-center">
-                            <img src="img/client1.jpg" alt="Diet Expert" class="rounded-circle mr-3" style="width:80px; height:80px;">
-                            <div>
-                                <p class="mb-0"><strong>Diet Expert</strong></p>
-                                <p class="mb-0">CFO</p>
-                            </div>
-                            </div>
-                            <div class="mt-3 mx-auto text-center" style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
-                            fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
-                            </div>
-                        </div>
-                        <!-- Client 2 -->
-                        <div class="col-md-6 mb-4">
-                            <div class="d-flex align-items-center">
-                            <img src="img/client2.jpg" alt="Cardio Trainer" class="rounded-circle mr-3" style="width:80px; height:80px;">
-                            <div>
-                                <p class="mb-0"><strong>Cardio Trainer</strong></p>
-                                <p class="mb-0">CEO</p>
-                            </div>
-                            </div>
-                            <div class="mt-3 mx-auto text-center" style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
-                            fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
-                            </div>
-                        </div>
+        </div>
+    </div>
+
+    <div class="section-client container-fluid py-4" id="review">
+        <h2 class="text-center">REVIEW CLIENT</h2>
+        <p class="text-center" style="width: 100%; margin: 0 auto;">Lorem Ipsum is not simply random text. It has roots
+            in a piece of classical at Hampden-Sydney College.</p>
+        <div class="row">
+            <!-- Client 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                    <img src="img/client1.jpg" alt="Diet Expert" class="rounded-circle mr-3"
+                        style="width:80px; height:80px;">
+                    <div>
+                        <p class="mb-0"><strong>Diet Expert</strong></p>
+                        <p class="mb-0">CFO</p>
                     </div>
-            </div>
-            <div class="section-contact" id="contact">
-                <h2>CONTACT US</h2>
-                <p style="margin: 0 auto; width: 80%; text-align: center;">Lorem Ipsum is not simply random text. It has roots in a piece of classical at Hampden-Sydney College.</p>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="contact-us">
-                                <div class="contact-info">
-                                    <p><strong>Mobile Number</strong>: <br>+135 773 321 4442</p>
-                                    <p><strong>Email Address</strong>: <br>demo@demo.com</p>
-                                </div>
-                                <p><strong>Make An Appointment</strong></p>
-                                <input type="text" placeholder="Your Name"><br>
-                                <input type="email" placeholder="Your Email"><br>
-                                <textarea placeholder="Your Message"></textarea>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                                <div class="contact-us">
-                                <!-- Google Maps Embed Code -->
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.6063581727175!2d127.08110495110875!3d37.50235839110672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9847087cb81d%3A0x20b60b0f40e495f2!2sSeoul%20City%20Hall!5e0!3m2!1sen!2skr!4v1612007110325!5m2!1sen!2skr" 
-                                        width="70%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-                                </div>
-                        </div>
-                    </div>
-            </div>
-            <footer class="footer">
-                <div class="footer-content">
-                    <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu, fringilla scelerisque ipsum pulvinar hendrerit.
-                        Mauris at dapibus enim, ac convallis metus.<br> Vestibulum enim metus, mollis et convallis id, gravida a nunc. Proin ipsum lectus, tincidunt eu nunc quis, facilisis elementum nulla.</p>
                 </div>
-                <div class="footer-container">
-                    <div class="footer-links">
-                        <h4>Information</h4>
-                        <a href="#home">About Us</a>
-                        <a href="#classes">Classes</a>
-                        <a href="#">Blog</a>
-                        <a href="#contact">Contact</a>
-                    </div>   
-                    <div class="footer-links">
-                        <h4>Helpful Links</h4>
-                        <a href="#purchase">Services</a>
-                        <a href="#">Supports</a>
-                        <a href="#">Terms & Condition</a>
-                        <a href="#">Privacy Policy</a>
+                <div class="mt-3 mx-auto text-center"
+                    style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                </div>
+            </div>
+            <!-- Client 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="d-flex align-items-center">
+                    <img src="img/client2.jpg" alt="Cardio Trainer" class="rounded-circle mr-3"
+                        style="width:80px; height:80px;">
+                    <div>
+                        <p class="mb-0"><strong>Cardio Trainer</strong></p>
+                        <p class="mb-0">CEO</p>
                     </div>
-                </div>    
-            </footer>
-            <script>
+                </div>
+                <div class="mt-3 mx-auto text-center"
+                    style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section-contact" id="contact">
+        <h2>CONTACT US</h2>
+        <p style="margin: 0 auto; width: 80%; text-align: center;">Lorem Ipsum is not simply random text. It has roots
+            in a piece of classical at Hampden-Sydney College.</p>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="contact-us">
+                    <div class="contact-info">
+                        <p><strong>Mobile Number</strong>: <br>+135 773 321 4442</p>
+                        <p><strong>Email Address</strong>: <br>demo@demo.com</p>
+                    </div>
+                    <p><strong>Make An Appointment</strong></p>
+                    <input type="text" placeholder="Your Name"><br>
+                    <input type="email" placeholder="Your Email"><br>
+                    <textarea placeholder="Your Message"></textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="contact-us">
+                    <!-- Google Maps Embed Code -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.6063581727175!2d127.08110495110875!3d37.50235839110672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357c9847087cb81d%3A0x20b60b0f40e495f2!2sSeoul%20City%20Hall!5e0!3m2!1sen!2skr!4v1612007110325!5m2!1sen!2skr"
+                        width="70%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-content">
+            <img src="/img/logo.png" alt="Powerfull Logo" width="120" height="40">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu, fringilla
+                scelerisque ipsum pulvinar hendrerit.
+                Mauris at dapibus enim, ac convallis metus.<br> Vestibulum enim metus, mollis et convallis id, gravida a
+                nunc. Proin ipsum lectus, tincidunt eu nunc quis, facilisis elementum nulla.</p>
+        </div>
+        <div class="footer-container">
+            <div class="footer-links">
+                <h4>Information</h4>
+                <a href="#home">About Us</a>
+                <a href="#classes">Classes</a>
+                <a href="#">Blog</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="footer-links">
+                <h4>Helpful Links</h4>
+                <a href="#purchase">Services</a>
+                <a href="#">Supports</a>
+                <a href="#">Terms & Condition</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+    <script>
 
-                window.addEventListener("scroll", function () {
-                                var navbar = document.getElementById("navbar");
-                                if (window.scrollY > 50) {
-                                    navbar.classList.add("scrolled");
-                                } else {
-                                    navbar.classList.remove("scrolled");
-                                }
-                            });
+        window.addEventListener("scroll", function () {
+            var navbar = document.getElementById("navbar");
+            if (window.scrollY > 50) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
 
-                function changeContent(classType, btn) {
-                    // 🔹 Tüm butonların "active" sınıfını kaldır
-                    document.querySelectorAll(".buttons button").forEach(button => {
-                        button.classList.remove("active");
-                    });
+        function changeContent(classType, btn) {
+            // 🔹 Remove the "active" class from all buttons
+            document.querySelectorAll(".buttons button").forEach(button => {
+                button.classList.remove("active");
+            });
 
-                    // 🔹 Tıklanan butona "active" ekleyerek rengini değiştir
-                    btn.classList.add("active");
+            // 🔹 Add "active" class to the clicked button to change its color
+            btn.classList.add("active");
 
-                    // 🔹 İçeriği güncelle
-                    const title = document.getElementById("title");
-                    const description = document.getElementById("description");
-                    const schedule = document.getElementById("schedule");
-                    const classImage = document.getElementById("classImage");
-
-                    if (classType === "yoga") {
-                        title.innerText = "Why choose Yoga?";
-                        description.innerText = "Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to improve your mental and physical well-being.";
-                        schedule.innerText = "Saturday-Sunday: 8:00am - 10:00am";
-                        classImage.src = "img/yoga.jpg";  
-                    } else if (classType === "group") {
-                        title.innerText = "Why choose Group Classes?";
-                        description.innerText = "Group classes help you stay motivated and socialize while exercising. Join our fun and energetic sessions!";
-                        schedule.innerText = "Monday-Tuesday: 5:00pm - 7:00pm";
-                        classImage.src = "img/group.webp";  
-                    } else if (classType === "solo") {
-                        title.innerText = "Why choose Solo Training?";
-                        description.innerText = "Solo training allows for personalized workouts tailored to your goals. Work at your own pace with professional guidance.";
-                        schedule.innerText = "Everyday: 6:00am - 8:00am";
-                        classImage.src = "img/solo.jpg";  
-                    } else if (classType === "stretching") {
-                        title.innerText = "Why choose Stretching Sessions?";
-                        description.innerText = "Stretching is key to injury prevention and flexibility. Improve your posture and reduce stiffness with our stretching programs.";
-                        schedule.innerText = "Wednesday-Friday: 4:00pm - 6:00pm";
-                        classImage.src = "img/stret.webp";  
-                    }
-                }
-                function calculateBMI() {
-        let height = document.getElementById("height").value / 100; // Metre cinsinden
-        let weight = document.getElementById("weight").value;
-        let marker = document.getElementById("bmi-marker");
-
-        if (height > 0 && weight > 0) {
-            let bmi = (weight / (height * height)).toFixed(1);
-            document.getElementById("bmi-result").innerText = "Your BMI: " + bmi;
-
-            let position = mapBMIToPosition(bmi);
-            marker.style.left = position + "%";
-        } else {
-            document.getElementById("bmi-result").innerText = "Please enter valid height and weight!";
+            // 🔹 Update the content
+            const title = document.getElementById("title");
+            const description = document.getElementById("description");
+            const schedule = document.getElementById("schedule");
+            const classImage = document.getElementById("classImage");
         }
-    }
 
-    function mapBMIToPosition(bmi) {
-        /* BMI değerlerini görsele uygun olarak yüzde pozisyonlarına dönüştür */
-        if (bmi < 15) return 10;  // Çok zayıf
-        if (bmi >= 15 && bmi < 18.5) return 20; // Zayıf
-        if (bmi >= 18.5 && bmi < 25) return 35; // Normal
-        if (bmi >= 25 && bmi < 30) return 50; // Fazla kilolu
-        if (bmi >= 30 && bmi < 35) return 65; // Obez
-        return 85 ; // Ciddi obezite
-    }
-            </script>
-    </body>
+
+        if (classType === "yoga") {
+            title.innerText = "Why choose Yoga?";
+            description.innerText = "Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to improve your mental and physical well-being.";
+            schedule.innerText = "Saturday-Sunday: 8:00am - 10:00am";
+            classImage.src = "img/yoga.jpg";
+        } else if (classType === "group") {
+            title.innerText = "Why choose Group Classes?";
+            description.innerText = "Group classes help you stay motivated and socialize while exercising. Join our fun and energetic sessions!";
+            schedule.innerText = "Monday-Tuesday: 5:00pm - 7:00pm";
+            classImage.src = "img/group.webp";
+        } else if (classType === "solo") {
+            title.innerText = "Why choose Solo Training?";
+            description.innerText = "Solo training allows for personalized workouts tailored to your goals. Work at your own pace with professional guidance.";
+            schedule.innerText = "Everyday: 6:00am - 8:00am";
+            classImage.src = "img/solo.jpg";
+        } else if (classType === "stretching") {
+            title.innerText = "Why choose Stretching Sessions?";
+            description.innerText = "Stretching is key to injury prevention and flexibility. Improve your posture and reduce stiffness with our stretching programs.";
+            schedule.innerText = "Wednesday-Friday: 4:00pm - 6:00pm";
+            classImage.src = "img/stret.webp";
+        }
+
+        function calculateBMI() {
+            let height = document.getElementById("height").value / 100; // In meters
+            let weight = document.getElementById("weight").value;
+            let marker = document.getElementById("bmi-marker");
+
+            if (height > 0 && weight > 0) {
+                let bmi = (weight / (height * height)).toFixed(1);
+                document.getElementById("bmi-result").innerText = "Your BMI: " + bmi;
+
+                let position = mapBMIToPosition(bmi);
+                marker.style.left = position + "%";
+            } else {
+                document.getElementById("bmi-result").innerText = "Please enter valid height and weight!";
+            }
+        }
+
+        function mapBMIToPosition(bmi) {
+            /* Convert BMI values to percentage positions suitable for the visual representation */
+            if (bmi < 15) return 10;  // Very underweight
+            if (bmi >= 15 && bmi < 18.5) return 20; // Underweight
+            if (bmi >= 18.5 && bmi < 25) return 35; // Normal weight
+            if (bmi >= 25 && bmi < 30) return 50; // Overweight
+            if (bmi >= 30 && bmi < 35) return 65; // Obese
+
+        }
+    </script>
+</body>
+
 </html>
