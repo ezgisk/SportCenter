@@ -34,4 +34,4 @@ The project is deployed on **Netlify**. You can view the live website [here](#).
 ## Contributing
 If you'd like to contribute, please fork the repository and create a pull request with your improvements.
 
-Netlify : https://animated-panda-ceeab9.netlify.app/
+Netlify : https://sprightly-custard-f85601.netlify.app/#contact
