@@ -239,6 +239,15 @@ h2 {
 .h3{
     font-weight: bolder;
 }
+.section-treiners h2::after {
+    content: "";
+    width: 100px;
+    height: 5px;
+    background: orange;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 3px;
+}
 .section-trainers .card {
     position: relative;
     overflow: hidden;
@@ -448,6 +457,44 @@ text-align: center;
     padding-top: 20px;
     font-weight: bolder;
 }
+.review-box {
+    background: #355592;
+    color: white;
+    padding: 10px;
+    position: relative;
+    max-width: 400px;
+    text-align: left;
+    font-size: 1rem;
+    line-height: 1.6;
+    display: inline-block;
+}
+
+/* Sol alttaki ters üçgen */
+.review-box::before {
+    content: "";
+    position: absolute;
+    bottom: -16px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 55px solid transparent;
+    border-right: -3px solid transparent;
+    border-top: 16px solid #8197bf;
+}
+
+/* Sağ alttaki ters üçgen */
+.review-box::after {
+    content: "";
+    position: absolute;
+    bottom: -16px;
+    right: 1px;
+    width: 0;
+    height: 0;
+    border-left: 0px solid transparent;
+    border-right: 55px solid transparent;
+    border-top: 16px solid #8197bf;
+}
+
 .section-purchase h2{
     padding-top: 20px;
     font-weight: bolder;
@@ -511,7 +558,7 @@ iframe {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #1E3A8A;
+    background: #325493;
     color: white;
     padding: 10px 20px;
     text-align: left;

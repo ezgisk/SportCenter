@@ -317,36 +317,41 @@
         <div class="row">
             <!-- Client 1 -->
             <div class="col-md-6 mb-4">
-                <div class="d-flex align-items-center">
-                    <img src="img/client1.jpg" alt="Diet Expert" class="rounded-circle mr-3"
-                        style="width:80px; height:80px;">
-                    <div>
-                        <p class="mb-0"><strong>Diet Expert</strong></p>
-                        <p class="mb-0">CFO</p>
+                <div style="text-align: justify;">
+                    <div class="d-flex align-items-center">
+                        <img src="img/client1.jpg" alt="Diet Expert" class="rounded-circle mr-3"
+                            style="width:80px; height:80px;">
+                        <div style="margin-left: 15px;">
+                            <p class="mb-0"><strong>Diet Expert</strong></p>
+                            <p class="mb-0">CFO</p>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-3 mx-auto text-center"
-                    style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
-                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+
+                    <div class="mt-3 mx-auto text-center"
+                        style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                        fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                    </div>
                 </div>
             </div>
             <!-- Client 2 -->
             <div class="col-md-6 mb-4">
-                <div class="d-flex align-items-center">
-                    <img src="img/client2.jpg" alt="Cardio Trainer" class="rounded-circle mr-3"
-                        style="width:80px; height:80px;">
-                    <div>
-                        <p class="mb-0"><strong>Cardio Trainer</strong></p>
-                        <p class="mb-0">CEO</p>
+                <div style="text-align: justify;">
+                    <div class="d-flex align-items-center">
+                        <img src="img/client2.jpg" alt="Cardio Trainer" class="rounded-circle mr-3"
+                            style="width:80px; height:80px;">
+                        <div style="margin-left: 15px;">
+                            <p class="mb-0"><strong>Cardio Trainer</strong></p>
+                            <p class="mb-0">CEO</p>
+                        </div>
                     </div>
-                </div>
-                <div class="mt-3 mx-auto text-center"
-                    style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
-                    fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                    <div class="mt-3 mx-auto text-center"
+                        style="background-color:#1d3b80; color:white; padding:15px; border-radius:10px; max-width:500px; width:100%;">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, quas!
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris dignissim venenatis arcu,
+                        fringilla scelerisque ipsum pulvinar hendrerit. Mauris at dapibus enim, ac convallis metus.
+                    </div>
                 </div>
             </div>
         </div>
@@ -428,29 +433,28 @@
             const description = document.getElementById("description");
             const schedule = document.getElementById("schedule");
             const classImage = document.getElementById("classImage");
-        }
 
-
-        if (classType === "yoga") {
-            title.innerText = "Why choose Yoga?";
-            description.innerText = "Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to improve your mental and physical well-being.";
-            schedule.innerText = "Saturday-Sunday: 8:00am - 10:00am";
-            classImage.src = "img/yoga.jpg";
-        } else if (classType === "group") {
-            title.innerText = "Why choose Group Classes?";
-            description.innerText = "Group classes help you stay motivated and socialize while exercising. Join our fun and energetic sessions!";
-            schedule.innerText = "Monday-Tuesday: 5:00pm - 7:00pm";
-            classImage.src = "img/group.webp";
-        } else if (classType === "solo") {
-            title.innerText = "Why choose Solo Training?";
-            description.innerText = "Solo training allows for personalized workouts tailored to your goals. Work at your own pace with professional guidance.";
-            schedule.innerText = "Everyday: 6:00am - 8:00am";
-            classImage.src = "img/solo.jpg";
-        } else if (classType === "stretching") {
-            title.innerText = "Why choose Stretching Sessions?";
-            description.innerText = "Stretching is key to injury prevention and flexibility. Improve your posture and reduce stiffness with our stretching programs.";
-            schedule.innerText = "Wednesday-Friday: 4:00pm - 6:00pm";
-            classImage.src = "img/stret.webp";
+            if (classType === "yoga") {
+                title.innerText = "Why choose Yoga?";
+                description.innerText = "Yoga is great for flexibility, relaxation, and strength. Join our yoga sessions to improve your mental and physical well-being.";
+                schedule.innerText = "Saturday-Sunday: 8:00am - 10:00am";
+                classImage.src = "img/yoga.jpg";
+            } else if (classType === "group") {
+                title.innerText = "Why choose Group Classes?";
+                description.innerText = "Group classes help you stay motivated and socialize while exercising. Join our fun and energetic sessions!";
+                schedule.innerText = "Monday-Tuesday: 5:00pm - 7:00pm";
+                classImage.src = "img/group.webp";
+            } else if (classType === "solo") {
+                title.innerText = "Why choose Solo Training?";
+                description.innerText = "Solo training allows for personalized workouts tailored to your goals. Work at your own pace with professional guidance.";
+                schedule.innerText = "Everyday: 6:00am - 8:00am";
+                classImage.src = "img/solo.jpg";
+            } else if (classType === "stretching") {
+                title.innerText = "Why choose Stretching Sessions?";
+                description.innerText = "Stretching is key to injury prevention and flexibility. Improve your posture and reduce stiffness with our stretching programs.";
+                schedule.innerText = "Wednesday-Friday: 4:00pm - 6:00pm";
+                classImage.src = "img/stret.webp";
+            }
         }
 
         function calculateBMI() {
